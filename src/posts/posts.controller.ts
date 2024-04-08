@@ -6,13 +6,18 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { AuthTypes } from '../auth/enums/auth.types';
+import { AuthGuard } from '../auth/auth.guard';
 
-@ApiBearerAuth()
+@ApiTags('Posts')
+@UseGuards(AuthGuard)
+@ApiBearerAuth(AuthTypes.JWT)
 @Controller('posts')
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}

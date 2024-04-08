@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
+import { AuthTypes } from './auth/enums/auth.types';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -17,7 +18,7 @@ async function bootstrap() {
         bearerFormat: 'JWT',
         description: 'Paste a valid access token here.',
       },
-      'JWT',
+      AuthTypes.JWT,
     )
     .build();
   const document = SwaggerModule.createDocument(app, config);
