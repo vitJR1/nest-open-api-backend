@@ -10,7 +10,7 @@ import { PostsModule } from './posts/posts.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.development.env',
+      envFilePath: '.env.test.local',
     }),
     AuthModule,
     UsersModule,
